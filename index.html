@@ -45,6 +45,9 @@
  
 </body>
 <script>    
+    document.getElementById("pRockImg").disabled=true;
+    document.getElementById("pPaperImg").disabled=true;
+    document.getElementById("pScissorsImg").disabled=true;
     document.getElementById("BotonSiguiente").disabled=true;
     window.pcount = 1;
     window.ccount = 1;
@@ -131,16 +134,25 @@ function game(pcount, ccount, audio, playerSelect, computerSelect){
 }
 if (win=="tied"){
 document.getElementById("BotonSiguiente").disabled=false;
+document.getElementById("pRockImg").disabled=true;
+document.getElementById("pPaperImg").disabled=true;
+document.getElementById("pScissorsImg").disabled=true;
 console.log("Game was tied");
 }
 
 if (win=="Player"){
 document.getElementById("BotonSiguiente").disabled=false;
+document.getElementById("pRockImg").disabled=true;
+document.getElementById("pPaperImg").disabled=true;
+document.getElementById("pScissorsImg").disabled=true;
 window.pcount++;
 console.log(pcount, " number of times player won");
 }
 if (win=="Computer"){
 document.getElementById("BotonSiguiente").disabled=false;
+document.getElementById("pRockImg").disabled=true;
+document.getElementById("pPaperImg").disabled=true;
+document.getElementById("pScissorsImg").disabled=true;
 window.ccount++;
 //setTimeout(reset(), 2000);
 console.log(ccount, " number of times computer won");
@@ -150,9 +162,9 @@ if ((pcount==3)&&(ccount<3)) {
     console.log("Player is obviously smarter, HE WINS!");
     document.getElementById('Leaderboard').innerHTML="Player wins!";
     document.getElementById('BotonInicio').value="Restarting game";
-    audio.volume=0.1;
+    audio.volume=0.15;
     var audio = document.createElement('audio'); audio.id = 'audio';
-    audio.src = 'audio/owvictory.mp3'; 
+    audio.src = 'audio/owvictory.ogg'; 
     document.body.appendChild(audio);
     audio.play();
     audio.onended = function(){
@@ -164,9 +176,9 @@ if ((ccount==3)&&(pcount<3)) {
     console.log("PC Supremacy is real.... Computer wins");
     document.getElementById('BotonInicio').value="Restarting game";
     document.getElementById('Leaderboard').innerHTML="GG. Computer wins";
-    audio.volume=0.1;
+    audio.volume=0.15;
     var audio = document.createElement('audio'); audio.id = 'audio';
-    audio.src = 'audio/owdefeat.mp3'; 
+    audio.src = 'audio/owdefeat.ogg'; 
     document.body.appendChild(audio);
     audio.play();
     audio.onended = function(){
@@ -176,8 +188,11 @@ if ((ccount==3)&&(pcount<3)) {
 }
 
 function start(){
+document.getElementById("pRockImg").disabled=false;
+document.getElementById("pPaperImg").disabled=false;
+document.getElementById("pScissorsImg").disabled=false;
 var audio = document.createElement('audio'); audio.id = 'audio';
-audio.src = 'audio/bgmusic.mp3'; 
+audio.src = 'audio/narutoost.ogg'; 
 document.body.appendChild(audio);
 audio.play();
 return audio
@@ -196,6 +211,9 @@ function reset(){
     computerScissors.style.opacity = 0.3;
     computerPaper.style.opacity = 0.3;
     computerRock.style.opacity = 0.3;
+    document.getElementById("pRockImg").disabled=false;
+    document.getElementById("pPaperImg").disabled=false;
+    document.getElementById("pScissorsImg").disabled=false;
 }
 const values=["ROCK", "PAPER", "SCISSORS"];
 </script>  

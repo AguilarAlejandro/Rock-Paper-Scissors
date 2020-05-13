@@ -25,10 +25,11 @@
 }
 .PictureC{
     opacity:0.3;
+    background-color:black;
 }
 
 #pRockImg{
-    background: url(images/rock.jpg);
+    background-image: url(images/rock.jpg);
     width: 400px;
     height:268px;
 }
@@ -44,10 +45,25 @@
 }
 
 body{
-    background:black;
+    background: linear-gradient(0deg, #00906b, #004332, #2ab900, #aa2700);
+    background-size: 800% 800%;
+
+    -webkit-animation: AnimatedBackground 30s ease infinite;
+    animation: AnimatedBackground 30s ease infinite;
 }
 h1{
     color:white;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size:40px;
 }
+
+@-webkit-keyframes AnimatedBackground {
+    0%{background-position:50% 0%}
+    50%{background-position:51% 100%}
+    100%{background-position:50% 0%}
+    }
+    @keyframes AnimatedBackground {
+    0%{background-position:50% 0%}
+    50%{background-position:51% 100%}
+    100%{background-position:50% 0%}
+    }
