@@ -9,33 +9,39 @@
 </head>
 <body>
     <div class="Cuadro">
-        <input type=button onClick="" value='Jugar' id="BotonInicio">
+        <input type=button onClick="bgaudio()" value='Press to play' id="BotonInicio">
+       
     </div>
+    <br>
+    
     <div class="Cuadro">
-    <div id="playerDiv">
-        <img src="images/rock.jpg" alt="Rock" id="pRockImg" style="opacity:0.3;">
-        <img src="images/scissors.jpg" alt="Scissors" id="pScissorsImg" style="opacity:0.3;">
-        <img src="images/paper.jpg" alt="Paper" id="pPaperImg" style="opacity:0.3;">
+    <div>
+        <h1>Player selection</h1>
+        <div id="playerDiv">
+            <input type=button onclick="game(audio,'ROCK',computerSelect)" id="pRockImg" class="Picture">
+            <input type=button onClick="game(audio,'SCISSORS',computerSelect)" id="pScissorsImg" class="Picture">
+            <input type=button onClick="game(audio,'PAPER',computerSelect)" id="pPaperImg" class="Picture">
+            
+        </div>
     </div>
+    <div>
+        <h1>Computer selection</h1>
     <div id="computerDiv">
-        <img src="images/rock.jpg" alt="Rock" id="cRockImg" style="opacity:0.3;">
-        <img src="images/scissors.jpg" alt="Scissors" id="cScissorsImg" style="opacity:0.3;">
-        <img src="images/paper.jpg" alt="Paper" id="cPaperImg" style="opacity:0.3;">
+        <img src="images/rock.jpg" alt="Rock" id="cRockImg" class="PictureC">
+        <img src="images/scissors.jpg" alt="Scissors" id="cScissorsImg" class="PictureC">
+        <img src="images/paper.jpg" alt="Paper" id="cPaperImg" class="PictureC">
     </div>
     </div>
+    </div>
 
-
-     <audio src="audio/bgmusic.mp3" autoplay loop>
-     </audio>
-
-    <script>
+    <script>                 
             function computerPlay(possibleValues){
             var computerSel=values[Math.floor(Math.random()*3)]; // 3 is the length of the values array
             console.log("Computer chose ", computerSel);
             return computerSel
         }
 
-        function game(playerSelect, computerSelect){
+        function game(audio, playerSelect, computerSelect){
             var win;
             var playerRock=document.getElementById("pRockImg");
             var playerScissors=document.getElementById("pScissorsImg");
@@ -43,20 +49,24 @@
             var computerRock=document.getElementById("cRockImg");
             var computerPaper=document.getElementById("cPaperImg");
             var computerScissors=document.getElementById("cScissorsImg");
-
+            console.log("Player chose ", playerSelect);
+           
             if (playerSelect=="ROCK"){
                 playerRock.style.opacity = 1;
                 if (computerSelect=="PAPER"){
                     computerPaper.style.opacity = 1;
+                    computerPaper.style.scale = 1.3;
                     win="Computer";
                 }
                 else{
                     if (computerSelect=="SCISSORS"){
                         computerScissors.style.opacity = 1;
+                        computerScissors.style.scale = 1.3;
                         win="Player";
                     }
                     if (computerSelect=="ROCK"){
                         computerRock.style.opacity = 1;
+                        computerRock.style.scale = 1.3;
                         win="tied";
                     }    
                 }
@@ -65,15 +75,18 @@
                 playerPaper.style.opacity = 1;
                 if (computerSelect=="PAPER"){
                     computerPaper.style.opacity = 1;
+                    computerPaper.style.scale = 1.3;
                     win="tied";
                 }
                 else{
                     if (computerSelect=="SCISSORS"){
                         computerScissors.style.opacity = 1;
+                        computerScissors.style.scale = 1.3;
                         win="Computer";
                     }
                     if (computerSelect=="ROCK"){
                         computerRock.style.opacity = 1;
+                        computerRock.style.scale = 1.3;
                         win="Player";
                     }    
                 } 
@@ -82,45 +95,60 @@
                 playerScissors.style.opacity = 1;
                 if (computerSelect=="PAPER"){
                     computerPaper.style.opacity = 1;
+                    computerPaper.style.scale = 1.3;
                     win="Player";
                 }
                 else{
                     if (computerSelect=="SCISSORS"){
                         computerScissors.style.opacity = 1;
+                        computerScissors.style.scale = 1.3;
                         win="tied";
                     }
                     if (computerSelect=="ROCK"){
                         computerRock.style.opacity = 1;
+                        computerRock.style.scale = 1.3;
                         win="Computer";
                     } 
             }
         }
-        return win
-        }
-        const values=["ROCK", "PAPER", "SCISSORS"];
-        var playerSelect=prompt("Choose between Rock, Paper and Scissors").toUpperCase();
-        console.log("Player chose ", playerSelect);
-        var computerSelect=computerPlay(values);
-        var winner=game(playerSelect,computerSelect);
-
-        if (winner=="tied"){
+        if (win=="tied"){
         console.log("Game was tied");
         }
-        if (winner=="Player"){
+        if (win=="Player"){
         console.log("Player is obviously smarter, HE WINS!");
+        audio.volume=0.1;
         var audio = document.createElement('audio'); audio.id = 'audio';
         audio.src = 'audio/owvictory.mp3'; 
         document.body.appendChild(audio);
         audio.play();
+        audio.onended = function(){
+        window.location.reload(true);
         }
-        if (winner=="Computer"){
+        }
+        if (win=="Computer"){
         console.log("PC Supremacy is real.... Computer wins");
+        audio.volume=0.1;
         var audio = document.createElement('audio'); audio.id = 'audio';
         audio.src = 'audio/owdefeat.mp3'; 
         document.body.appendChild(audio);
         audio.play();
+        audio.onended = function(){
+        window.location.reload(true);
         }
-      
+        }
+               
+        }
+
+        function bgaudio(){
+        var audio = document.createElement('audio'); audio.id = 'audio';
+        audio.src = 'audio/bgmusic.mp3'; 
+        document.body.appendChild(audio);
+        audio.play();
+        return audio
+        }
+    const values=["ROCK", "PAPER", "SCISSORS"];
+    var computerSelect=computerPlay(values);
+              
     </script>
     
 </body>

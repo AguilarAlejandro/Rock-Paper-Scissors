@@ -2,10 +2,46 @@
     text-align:center;
     padding: 30px 20px 35px 20px;
     margin:auto;
-    font-family:Amarillo;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size:40px;
 
 }
 .Cuadro{
     text-align:center;
+}
+
+.Picture{
+    opacity:0.3;
+}
+.Picture:hover{
+    opacity:1;
+    transform:scale(1.1);
+}
+.PictureC{
+    opacity:0.3;
+}
+
+#pRockImg{
+    background: url(images/rock.jpg);
+    width: 400px;
+    height:268px;
+}
+#pScissorsImg{
+    background:url(images/scissors.jpg);
+    width: 400px;
+    height:268px;
+}
+#pPaperImg{
+    background:url(images/paper.jpg);
+    width: 400px;
+    height:268px;
+}
+
+body{
+    background:black;
+}
+h1{
+    color:white;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size:40px;
 }
