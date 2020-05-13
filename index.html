@@ -3,18 +3,21 @@
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Rock Paper Scissors</title>
 </head>
 <body>
     <div class="Cuadro">
-        <input type=button onClick="bgaudio()" value='Press to play' id="BotonInicio">
+        <input type=button onClick="this.disabled=true; this.value='Playing';bgaudio();" value='Press to play' id="BotonInicio">
        
     </div>
     <br>
     
     <div class="Cuadro">
+        <div>
+            <h1 id="Leaderboard" style="color:red;">Rock Paper Scissors</h1>
+        </div>
     <div>
         <h1>Player selection</h1>
         <div id="playerDiv">
@@ -43,6 +46,8 @@
 
         function game(audio, playerSelect, computerSelect){
             var win;
+            var pcount=0;
+            var ccount=0;
             var playerRock=document.getElementById("pRockImg");
             var playerScissors=document.getElementById("pScissorsImg");
             var playerPaper=document.getElementById("pPaperImg");
@@ -113,9 +118,14 @@
         }
         if (win=="tied"){
         console.log("Game was tied");
+        document.getElementById('Leaderboard').innerHTML="Game was tied";
+        document.getElementById('BotonInicio').value="Restarting game";
         }
         if (win=="Player"){
+        pcount=+1;
         console.log("Player is obviously smarter, HE WINS!");
+        document.getElementById('Leaderboard').innerHTML="Player wins!";
+        document.getElementById('BotonInicio').value="Restarting game";
         audio.volume=0.1;
         var audio = document.createElement('audio'); audio.id = 'audio';
         audio.src = 'audio/owvictory.mp3'; 
@@ -126,7 +136,10 @@
         }
         }
         if (win=="Computer"){
+            ccount=+1;
         console.log("PC Supremacy is real.... Computer wins");
+        document.getElementById('BotonInicio').value="Restarting game";
+        document.getElementById('Leaderboard').innerHTML="GG. Computer wins";
         audio.volume=0.1;
         var audio = document.createElement('audio'); audio.id = 'audio';
         audio.src = 'audio/owdefeat.mp3'; 
