@@ -7,10 +7,11 @@
     <link rel="stylesheet" href="style.css">
     <title>Rock Paper Scissors</title>
 </head>
+ 
 <body>
     <div class="Cuadro">
-        <input type=button onClick="this.disabled=true; this.value='Playing';bgaudio();" value='Press to play' id="BotonInicio">
-       
+        <input type=button onClick="this.disabled=true; this.value='Playing';start();" value='Press to play' id="BotonInicio">
+        <input type=button onClick="this.disabled=true; reset();" value='Next round' id="BotonSiguiente">
     </div>
     <br>
     
@@ -19,16 +20,21 @@
             <h1 id="Leaderboard" style="color:red;">Rock Paper Scissors</h1>
         </div>
     <div>
-        <h1>Player selection</h1>
+        <h1>Player selection - Score: <span id=playerScore></span></h1>
         <div id="playerDiv">
-            <input type=button onclick="game(audio,'ROCK',computerSelect)" id="pRockImg" class="Picture">
-            <input type=button onClick="game(audio,'SCISSORS',computerSelect)" id="pScissorsImg" class="Picture">
-            <input type=button onClick="game(audio,'PAPER',computerSelect)" id="pPaperImg" class="Picture">
+            <input type=button onclick="var computerSelect=computerPlay(values); 
+            game(pcount,ccount,audio,'ROCK',computerSelect)" id="pRockImg" class="Picture">
+
+            <input type=button onClick="var computerSelect=computerPlay(values); 
+            game(pcount,ccount,audio,'SCISSORS',computerSelect)" id="pScissorsImg" class="Picture">
+
+            <input type=button onClick="var computerSelect=computerPlay(values); 
+            game(pcount,ccount,audio,'PAPER',computerSelect)" id="pPaperImg" class="Picture">
             
         </div>
     </div>
     <div>
-        <h1>Computer selection</h1>
+        <h1>Computer selection - Score: <span id=computerScore></span></h1></h1>
     <div id="computerDiv">
         <img src="images/rock.jpg" alt="Rock" id="cRockImg" class="PictureC">
         <img src="images/scissors.jpg" alt="Scissors" id="cScissorsImg" class="PictureC">
@@ -36,133 +42,161 @@
     </div>
     </div>
     </div>
-
-    <script>                 
-            function computerPlay(possibleValues){
-            var computerSel=values[Math.floor(Math.random()*3)]; // 3 is the length of the values array
-            console.log("Computer chose ", computerSel);
-            return computerSel
-        }
-
-        function game(audio, playerSelect, computerSelect){
-            var win;
-            var pcount=0;
-            var ccount=0;
-            var playerRock=document.getElementById("pRockImg");
-            var playerScissors=document.getElementById("pScissorsImg");
-            var playerPaper=document.getElementById("pPaperImg");
-            var computerRock=document.getElementById("cRockImg");
-            var computerPaper=document.getElementById("cPaperImg");
-            var computerScissors=document.getElementById("cScissorsImg");
-            console.log("Player chose ", playerSelect);
-           
-            if (playerSelect=="ROCK"){
-                playerRock.style.opacity = 1;
-                if (computerSelect=="PAPER"){
-                    computerPaper.style.opacity = 1;
-                    computerPaper.style.scale = 1.3;
-                    win="Computer";
-                }
-                else{
-                    if (computerSelect=="SCISSORS"){
-                        computerScissors.style.opacity = 1;
-                        computerScissors.style.scale = 1.3;
-                        win="Player";
-                    }
-                    if (computerSelect=="ROCK"){
-                        computerRock.style.opacity = 1;
-                        computerRock.style.scale = 1.3;
-                        win="tied";
-                    }    
-                }
-            }
-            if (playerSelect=="PAPER"){
-                playerPaper.style.opacity = 1;
-                if (computerSelect=="PAPER"){
-                    computerPaper.style.opacity = 1;
-                    computerPaper.style.scale = 1.3;
-                    win="tied";
-                }
-                else{
-                    if (computerSelect=="SCISSORS"){
-                        computerScissors.style.opacity = 1;
-                        computerScissors.style.scale = 1.3;
-                        win="Computer";
-                    }
-                    if (computerSelect=="ROCK"){
-                        computerRock.style.opacity = 1;
-                        computerRock.style.scale = 1.3;
-                        win="Player";
-                    }    
-                } 
-            }
-            if (playerSelect=="SCISSORS"){
-                playerScissors.style.opacity = 1;
-                if (computerSelect=="PAPER"){
-                    computerPaper.style.opacity = 1;
-                    computerPaper.style.scale = 1.3;
-                    win="Player";
-                }
-                else{
-                    if (computerSelect=="SCISSORS"){
-                        computerScissors.style.opacity = 1;
-                        computerScissors.style.scale = 1.3;
-                        win="tied";
-                    }
-                    if (computerSelect=="ROCK"){
-                        computerRock.style.opacity = 1;
-                        computerRock.style.scale = 1.3;
-                        win="Computer";
-                    } 
-            }
-        }
-        if (win=="tied"){
-        console.log("Game was tied");
-        document.getElementById('Leaderboard').innerHTML="Game was tied";
-        document.getElementById('BotonInicio').value="Restarting game";
-        }
-        if (win=="Player"){
-        pcount=+1;
-        console.log("Player is obviously smarter, HE WINS!");
-        document.getElementById('Leaderboard').innerHTML="Player wins!";
-        document.getElementById('BotonInicio').value="Restarting game";
-        audio.volume=0.1;
-        var audio = document.createElement('audio'); audio.id = 'audio';
-        audio.src = 'audio/owvictory.mp3'; 
-        document.body.appendChild(audio);
-        audio.play();
-        audio.onended = function(){
-        window.location.reload(true);
-        }
-        }
-        if (win=="Computer"){
-            ccount=+1;
-        console.log("PC Supremacy is real.... Computer wins");
-        document.getElementById('BotonInicio').value="Restarting game";
-        document.getElementById('Leaderboard').innerHTML="GG. Computer wins";
-        audio.volume=0.1;
-        var audio = document.createElement('audio'); audio.id = 'audio';
-        audio.src = 'audio/owdefeat.mp3'; 
-        document.body.appendChild(audio);
-        audio.play();
-        audio.onended = function(){
-        window.location.reload(true);
-        }
-        }
-               
-        }
-
-        function bgaudio(){
-        var audio = document.createElement('audio'); audio.id = 'audio';
-        audio.src = 'audio/bgmusic.mp3'; 
-        document.body.appendChild(audio);
-        audio.play();
-        return audio
-        }
-    const values=["ROCK", "PAPER", "SCISSORS"];
-    var computerSelect=computerPlay(values);
-              
-    </script>
-    
+ 
 </body>
+<script>    
+    document.getElementById("BotonSiguiente").disabled=true;
+    window.pcount = 1;
+    window.ccount = 1;
+    console.log("Actual value of pcount and ccount ", pcount, ccount);         
+    function computerPlay(possibleValues){
+    var computerSel=values[Math.floor(Math.random()*3)]; // 3 is the length of the values array
+    console.log("Computer chose ", computerSel);
+    return computerSel
+}
+
+function game(pcount, ccount, audio, playerSelect, computerSelect){
+    var win;
+    var playerRock=document.getElementById("pRockImg");
+    var playerScissors=document.getElementById("pScissorsImg");
+    var playerPaper=document.getElementById("pPaperImg");
+    var computerRock=document.getElementById("cRockImg");
+    var computerPaper=document.getElementById("cPaperImg");
+    var computerScissors=document.getElementById("cScissorsImg");
+    var pScore=document.getElementById("playerScore");
+    var cScore=document.getElementById("computerScore");
+    console.log("Player chose ", playerSelect);
+    pScore.innerHTML=pcount;
+    cScore.innerHTML=ccount;
+   
+    if (playerSelect=="ROCK"){
+        playerRock.style.opacity = 1;
+        if (computerSelect=="PAPER"){
+            computerPaper.style.opacity = 1;
+            computerPaper.style.scale = 1.3;
+            win="Computer";
+        }
+        else{
+            if (computerSelect=="SCISSORS"){
+                computerScissors.style.opacity = 1;
+                computerScissors.style.scale = 1.3;
+                win="Player";
+            }
+            if (computerSelect=="ROCK"){
+                computerRock.style.opacity = 1;
+                computerRock.style.scale = 1.3;
+                win="tied";
+            }    
+        }
+    }
+    if (playerSelect=="PAPER"){
+        playerPaper.style.opacity = 1;
+        if (computerSelect=="PAPER"){
+            computerPaper.style.opacity = 1;
+            computerPaper.style.scale = 1.3;
+            win="tied";
+        }
+        else{
+            if (computerSelect=="SCISSORS"){
+                computerScissors.style.opacity = 1;
+                computerScissors.style.scale = 1.3;
+                win="Computer";
+            }
+            if (computerSelect=="ROCK"){
+                computerRock.style.opacity = 1;
+                computerRock.style.scale = 1.3;
+                win="Player";
+            }    
+        } 
+    }
+    if (playerSelect=="SCISSORS"){
+        playerScissors.style.opacity = 1;
+        if (computerSelect=="PAPER"){
+            computerPaper.style.opacity = 1;
+            computerPaper.style.scale = 1.3;
+            win="Player";
+        }
+        else{
+            if (computerSelect=="SCISSORS"){
+                computerScissors.style.opacity = 1;
+                computerScissors.style.scale = 1.3;
+                win="tied";
+            }
+            if (computerSelect=="ROCK"){
+                computerRock.style.opacity = 1;
+                computerRock.style.scale = 1.3;
+                win="Computer";
+            } 
+    }
+}
+if (win=="tied"){
+document.getElementById("BotonSiguiente").disabled=false;
+console.log("Game was tied");
+}
+
+if (win=="Player"){
+document.getElementById("BotonSiguiente").disabled=false;
+window.pcount++;
+console.log(pcount, " number of times player won");
+}
+if (win=="Computer"){
+document.getElementById("BotonSiguiente").disabled=false;
+window.ccount++;
+//setTimeout(reset(), 2000);
+console.log(ccount, " number of times computer won");
+}
+if ((pcount==3)&&(ccount<3)) {
+    document.getElementById("BotonSiguiente").disabled=true;
+    console.log("Player is obviously smarter, HE WINS!");
+    document.getElementById('Leaderboard').innerHTML="Player wins!";
+    document.getElementById('BotonInicio').value="Restarting game";
+    audio.volume=0.1;
+    var audio = document.createElement('audio'); audio.id = 'audio';
+    audio.src = 'audio/owvictory.mp3'; 
+    document.body.appendChild(audio);
+    audio.play();
+    audio.onended = function(){
+    window.location.reload(true);
+    }
+}   
+if ((ccount==3)&&(pcount<3)) {
+    document.getElementById("BotonSiguiente").disabled=true;
+    console.log("PC Supremacy is real.... Computer wins");
+    document.getElementById('BotonInicio').value="Restarting game";
+    document.getElementById('Leaderboard').innerHTML="GG. Computer wins";
+    audio.volume=0.1;
+    var audio = document.createElement('audio'); audio.id = 'audio';
+    audio.src = 'audio/owdefeat.mp3'; 
+    document.body.appendChild(audio);
+    audio.play();
+    audio.onended = function(){
+    window.location.reload(true);
+     }
+}
+}
+
+function start(){
+var audio = document.createElement('audio'); audio.id = 'audio';
+audio.src = 'audio/bgmusic.mp3'; 
+document.body.appendChild(audio);
+audio.play();
+return audio
+}
+
+function reset(){
+    var playerRock=document.getElementById("pRockImg");
+    var playerScissors=document.getElementById("pScissorsImg");
+    var playerPaper=document.getElementById("pPaperImg");
+    var computerRock=document.getElementById("cRockImg");
+    var computerPaper=document.getElementById("cPaperImg");
+    var computerScissors=document.getElementById("cScissorsImg");
+    playerRock.style.opacity = 0.3;
+    playerPaper.style.opacity = 0.3;
+    playerScissors.style.opacity = 0.3;
+    computerScissors.style.opacity = 0.3;
+    computerPaper.style.opacity = 0.3;
+    computerRock.style.opacity = 0.3;
+}
+const values=["ROCK", "PAPER", "SCISSORS"];
+</script>  
 </html>
