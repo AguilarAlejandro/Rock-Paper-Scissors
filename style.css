@@ -66,3 +66,69 @@ h1{
     50%{background-position:100% 51%}
     100%{background-position:0% 50%}
     }
+
+    @media (max-width:992px){
+        #BotonInicio
+        {
+            font-size:30px;
+        }
+        #BotonSiguiente{
+            font-size:30px;
+        }
+        h1{
+            font-size:30px;
+        }
+        #pRockImg{
+            width:210px;
+            height:178px;
+            background-size: 210px 178px
+        }
+        #pPaperImg{
+            width:210px;
+            height:178px;
+            background-size: 210px 178px
+        }
+        #pScissorsImg{
+            width:210px;
+            height:178px;
+            background-size: 210px 178px
+        }
+        .PictureC{
+            width:210px;
+            height:178px;
+        }
+    
+    }
+
+@media (max-width:768px){
+    #BotonInicio
+    {
+        font-size:20px;
+    }
+    #BotonSiguiente{
+        font-size:20px;
+    }
+    h1{
+        font-size:20px;
+    }
+    #pRockImg{
+        width:139px;
+        height:118px;
+        background-size: 139px 118px
+    }
+    #pPaperImg{
+        width:139px;
+        height:118px;
+        background-size: 139px 118px
+    }
+    #pScissorsImg{
+        width:139px;
+        height:118px;
+        background-size: 139px 118px
+    }
+    .PictureC{
+        width:139px;
+        height:118px;
+    }
+
+}

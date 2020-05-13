@@ -35,11 +35,11 @@
     </div>
     <div>
         <h1>Computer selection - Score: <span id=computerScore></span>/5</h1>
-    <div id="computerDiv">
+        <div id="computerDiv">
         <img src="images/rock.jpg" alt="Rock" id="cRockImg" class="PictureC">
         <img src="images/scissors.jpg" alt="Scissors" id="cScissorsImg" class="PictureC">
         <img src="images/paper.jpg" alt="Paper" id="cPaperImg" class="PictureC">
-    </div>
+        </div>
     </div>
     </div>
  
@@ -137,6 +137,7 @@
             document.getElementById("pPaperImg").disabled=true;
             document.getElementById("pScissorsImg").disabled=true;
             console.log("Game was tied");
+            console.log("no score was incremented");
         }
 
         if (win=="Player"){
@@ -147,6 +148,7 @@
             window.pcount=window.pcount+1;
             console.log(pcount+1, " number of times player won");
             pScore.innerHTML=pcount+1;
+            console.log("player score incremented");
         }
         if (win=="Computer"){
             document.getElementById("BotonSiguiente").disabled=false;
@@ -156,9 +158,10 @@
             window.ccount=window.ccount+1;
             console.log(ccount+1, " number of times computer won");
             cScore.innerHTML=ccount+1;
+            console.log("computer score incremented");
         }
 
-        if ((pcount==2)&&(ccount<2)) {
+        if ((pScore.innerHTML==3)&&(cScore.innerHTML<3)) {
             pScore.innerHTML=pcount+1;
             document.getElementById("BotonSiguiente").disabled=true;
             console.log("Player is obviously smarter, HE WINS!");
@@ -169,11 +172,11 @@
             audio.src = 'audio/owvictory.ogg'; 
             document.body.appendChild(audio);
             audio.play();
-            audio.onended = function(){
-            window.location.reload(true);
-            }
+            //audio.onended = function(){
+            //window.location.reload(true);
+           // }
         }   
-        if ((ccount==2)&&(pcount<2)) {
+        if ((cScore.innerHTML==3)&&(pScore.innerHTML<3)) {
             pScore.innerHTML=pcount+1;
             document.getElementById("BotonSiguiente").disabled=true;
             console.log("PC Supremacy is real.... Computer wins");
@@ -184,9 +187,9 @@
             audio.src = 'audio/owdefeat.ogg'; 
             document.body.appendChild(audio);
             audio.play();
-            audio.onended = function(){
-            window.location.reload(true);
-            }
+            //audio.onended = function(){
+            //window.location.reload(true);
+            //}
         }
         }
 
