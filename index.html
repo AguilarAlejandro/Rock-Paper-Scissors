@@ -23,28 +23,32 @@
         <h1>Player selection - Score: <span id=playerScore></span>/5</h1>
         <div id="playerDiv">
             <input type=button onclick="var computerSelect=computerPlay(values); 
-            game(pcount,ccount,audio,'ROCK',computerSelect)" id="pRockImg" class="Picture">
+                    game(pcount,ccount,audio,'ROCK',computerSelect)" id="pRockImg" class="Picture">
 
             <input type=button onClick="var computerSelect=computerPlay(values); 
-            game(pcount,ccount,audio,'SCISSORS',computerSelect)" id="pScissorsImg" class="Picture">
+                    game(pcount,ccount,audio,'SCISSORS',computerSelect)" id="pScissorsImg" class="Picture">
 
             <input type=button onClick="var computerSelect=computerPlay(values); 
-            game(pcount,ccount,audio,'PAPER',computerSelect)" id="pPaperImg" class="Picture">
+                    game(pcount,ccount,audio,'PAPER',computerSelect)" id="pPaperImg" class="Picture">
             
         </div>
     </div>
     <div>
         <h1>Computer selection - Score: <span id=computerScore></span>/5</h1>
         <div id="computerDiv">
-        <img src="images/rock.jpg" alt="Rock" id="cRockImg" class="PictureC">
-        <img src="images/scissors.jpg" alt="Scissors" id="cScissorsImg" class="PictureC">
-        <img src="images/paper.jpg" alt="Paper" id="cPaperImg" class="PictureC">
+            <img src="images/rock.jpg" alt="Rock" id="cRockImg" class="PictureC">
+            <img src="images/scissors.jpg" alt="Scissors" id="cScissorsImg" class="PictureC">
+            <img src="images/paper.jpg" alt="Paper" id="cPaperImg" class="PictureC">
         </div>
     </div>
     </div>
  
 </body>
+
 <script>    
+    /* 
+    Correct initialization of variables (buttons and images)
+    */
     document.getElementById("pRockImg").disabled=true;
     document.getElementById("pPaperImg").disabled=true;
     document.getElementById("pScissorsImg").disabled=true;
@@ -148,7 +152,7 @@
             window.pcount=window.pcount+1;
             console.log(pcount+1, " number of times player won");
             pScore.innerHTML=pcount+1;
-            console.log("player score incremented");
+            console.log("Player score incremented");
         }
         if (win=="Computer"){
             document.getElementById("BotonSiguiente").disabled=false;
@@ -168,13 +172,14 @@
             document.getElementById('Leaderboard').innerHTML="Player wins!";
             document.getElementById('BotonInicio').value="Restarting game";
             audio.volume=0.15;
-            var audio = document.createElement('audio'); audio.id = 'audio';
+            var audio = document.createElement('audio'); 
+            audio.id = 'audio';
             audio.src = 'audio/owvictory.ogg'; 
             document.body.appendChild(audio);
             audio.play();
-            //audio.onended = function(){
-            //window.location.reload(true);
-           // }
+            audio.onended = function(){
+                window.location.reload(true);
+            }
         }   
         if ((cScore.innerHTML==3)&&(pScore.innerHTML<3)) {
             pScore.innerHTML=pcount+1;
@@ -183,21 +188,23 @@
             document.getElementById('BotonInicio').value="Restarting game";
             document.getElementById('Leaderboard').innerHTML="GG. Computer wins";
             audio.volume=0.15;
-            var audio = document.createElement('audio'); audio.id = 'audio';
+            var audio = document.createElement('audio'); 
+            audio.id = 'audio';
             audio.src = 'audio/owdefeat.ogg'; 
             document.body.appendChild(audio);
             audio.play();
-            //audio.onended = function(){
-            //window.location.reload(true);
-            //}
+            audio.onended = function(){
+                window.location.reload(true);
+                }
         }
-        }
+    }
 
     function start(){
         document.getElementById("pRockImg").disabled=false;
         document.getElementById("pPaperImg").disabled=false;
         document.getElementById("pScissorsImg").disabled=false;
-        var audio = document.createElement('audio'); audio.id = 'audio';
+        var audio = document.createElement('audio'); 
+        audio.id = 'audio';
         audio.src = 'audio/narutoost.ogg'; 
         document.body.appendChild(audio);
         audio.play();

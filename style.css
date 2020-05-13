@@ -26,7 +26,6 @@
     opacity:0.3;
     background-color:black;
 }
-
 #pRockImg{
     background-image: url(images/rock.jpg);
     width: 279px;
@@ -42,7 +41,6 @@
     width: 279px;
     height:237px; 
 }
-
 body{
     background: linear-gradient(270deg, #00ac88, #034ecc, #0ae6cb, #7f2121);
     background-size: 800% 800%;
@@ -60,45 +58,44 @@ h1{
     0%{background-position:0% 50%}
     50%{background-position:100% 50%}
     100%{background-position:0% 50%}
-    }
-    @keyframes AnimatedBackground {
+}
+@keyframes AnimatedBackground {
     0%{background-position:0% 50%}
     50%{background-position:100% 51%}
     100%{background-position:0% 50%}
-    }
+}
 
-    @media (max-width:992px){
-        #BotonInicio
-        {
-            font-size:30px;
-        }
-        #BotonSiguiente{
-            font-size:30px;
-        }
-        h1{
-            font-size:30px;
-        }
-        #pRockImg{
-            width:210px;
-            height:178px;
-            background-size: 210px 178px
-        }
-        #pPaperImg{
-            width:210px;
-            height:178px;
-            background-size: 210px 178px
-        }
-        #pScissorsImg{
-            width:210px;
-            height:178px;
-            background-size: 210px 178px
-        }
-        .PictureC{
-            width:210px;
-            height:178px;
-        }
-    
+@media (max-width:992px){
+    #BotonInicio
+    {
+        font-size:30px;
     }
+    #BotonSiguiente{
+        font-size:30px;
+    }
+    h1{
+        font-size:30px;
+    }
+    #pRockImg{
+        width:210px;
+        height:178px;
+        background-size: 210px 178px
+    }
+    #pPaperImg{
+        width:210px;
+        height:178px;
+        background-size: 210px 178px
+        }
+    #pScissorsImg{
+        width:210px;
+        height:178px;
+        background-size: 210px 178px
+    }
+    .PictureC{
+        width:210px;
+        height:178px;
+    }
+}
 
 @media (max-width:768px){
     #BotonInicio
