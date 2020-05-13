@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Rock Paper Scissors</title>
+</head>
+<body>
+    <div class="Cuadro">
+        <input type=button onClick="" value='Jugar' id="BotonInicio">
+    </div>
+    <div class="Cuadro">
+    <div id="playerDiv">
+        <img src="images/rock.jpg" alt="Rock" id="pRockImg" style="opacity:0.3;">
+        <img src="images/scissors.jpg" alt="Scissors" id="pScissorsImg" style="opacity:0.3;">
+        <img src="images/paper.jpg" alt="Paper" id="pPaperImg" style="opacity:0.3;">
+    </div>
+    <div id="computerDiv">
+        <img src="images/rock.jpg" alt="Rock" id="cRockImg" style="opacity:0.3;">
+        <img src="images/scissors.jpg" alt="Scissors" id="cScissorsImg" style="opacity:0.3;">
+        <img src="images/paper.jpg" alt="Paper" id="cPaperImg" style="opacity:0.3;">
+    </div>
+    </div>
+
+
+     <audio src="audio/bgmusic.mp3" autoplay loop>
+     </audio>
+
+    <script>
+            function computerPlay(possibleValues){
+            var computerSel=values[Math.floor(Math.random()*3)]; // 3 is the length of the values array
+            console.log("Computer chose ", computerSel);
+            return computerSel
+        }
+
+        function game(playerSelect, computerSelect){
+            var win;
+            var playerRock=document.getElementById("pRockImg");
+            var playerScissors=document.getElementById("pScissorsImg");
+            var playerPaper=document.getElementById("pPaperImg");
+            var computerRock=document.getElementById("cRockImg");
+            var computerPaper=document.getElementById("cPaperImg");
+            var computerScissors=document.getElementById("cScissorsImg");
+
+            if (playerSelect=="ROCK"){
+                playerRock.style.opacity = 1;
+                if (computerSelect=="PAPER"){
+                    computerPaper.style.opacity = 1;
+                    win="Computer";
+                }
+                else{
+                    if (computerSelect=="SCISSORS"){
+                        computerScissors.style.opacity = 1;
+                        win="Player";
+                    }
+                    if (computerSelect=="ROCK"){
+                        computerRock.style.opacity = 1;
+                        win="tied";
+                    }    
+                }
+            }
+            if (playerSelect=="PAPER"){
+                playerPaper.style.opacity = 1;
+                if (computerSelect=="PAPER"){
+                    computerPaper.style.opacity = 1;
+                    win="tied";
+                }
+                else{
+                    if (computerSelect=="SCISSORS"){
+                        computerScissors.style.opacity = 1;
+                        win="Computer";
+                    }
+                    if (computerSelect=="ROCK"){
+                        computerRock.style.opacity = 1;
+                        win="Player";
+                    }    
+                } 
+            }
+            if (playerSelect=="SCISSORS"){
+                playerScissors.style.opacity = 1;
+                if (computerSelect=="PAPER"){
+                    computerPaper.style.opacity = 1;
+                    win="Player";
+                }
+                else{
+                    if (computerSelect=="SCISSORS"){
+                        computerScissors.style.opacity = 1;
+                        win="tied";
+                    }
+                    if (computerSelect=="ROCK"){
+                        computerRock.style.opacity = 1;
+                        win="Computer";
+                    } 
+            }
+        }
+        return win
+        }
+        const values=["ROCK", "PAPER", "SCISSORS"];
+        var playerSelect=prompt("Choose between Rock, Paper and Scissors").toUpperCase();
+        console.log("Player chose ", playerSelect);
+        var computerSelect=computerPlay(values);
+        var winner=game(playerSelect,computerSelect);
+
+        if (winner=="tied"){
+        console.log("Game was tied");
+        }
+        if (winner=="Player"){
+        console.log("Player is obviously smarter, HE WINS!");
+        var audio = document.createElement('audio'); audio.id = 'audio';
+        audio.src = 'audio/owvictory.mp3'; 
+        document.body.appendChild(audio);
+        audio.play();
+        }
+        if (winner=="Computer"){
+        console.log("PC Supremacy is real.... Computer wins");
+        var audio = document.createElement('audio'); audio.id = 'audio';
+        audio.src = 'audio/owdefeat.mp3'; 
+        document.body.appendChild(audio);
+        audio.play();
+        }
+      
+    </script>
+    
+</body>
+</html>
