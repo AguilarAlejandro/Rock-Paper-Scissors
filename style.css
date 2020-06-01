@@ -5,6 +5,14 @@
     font-family:'Franklin Gothic Medium';
     font-size:40px;    
 }
+#BotonInicioPuyao {
+    text-align:center;
+    padding: 15px 20px 35px 15px;
+    margin:10px 5px 10px 0px;
+    font-family:'Franklin Gothic Medium';
+    font-size:40px;    
+}
+
 #BotonSiguiente{
     text-align:center;
     padding: 15px 20px 35px 15px;
@@ -42,7 +50,7 @@
     height:237px; 
 }
 body{
-    background: linear-gradient(270deg, #00ac88, #034ecc, #0ae6cb, #7f2121);
+   background: linear-gradient(270deg, #00ac88, #034ecc, #0ae6cb, #7f2121);
     background-size: 800% 800%;
     -webkit-animation: AnimatedBackground 30s ease infinite;
     animation: AnimatedBackground 30s ease infinite;
@@ -53,6 +61,20 @@ h1{
     font-size:40px;
     margin:10px 0px 10px 0px;
 }
+
+#backgroundVideo { 
+    opacity:0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index:-100 ;
+    position: fixed;    
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%); 
+    background-size: cover;
+  }
 
 @-webkit-keyframes AnimatedBackground {
     0%{background-position:0% 50%}
