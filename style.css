@@ -92,6 +92,9 @@ h1{
     {
         font-size:30px;
     }
+    #BotonInicioPuyao{
+        font-size:30px;
+    }
     #BotonSiguiente{
         font-size:30px;
     }
@@ -122,6 +125,9 @@ h1{
 @media (max-width:768px){
     #BotonInicio
     {
+        font-size:20px;
+    }
+    #BotonInicioPuyao{
         font-size:20px;
     }
     #BotonSiguiente{
