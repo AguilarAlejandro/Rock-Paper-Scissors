@@ -11,7 +11,6 @@
 
 <body>
     <div class="Cuadro">
-        
         <input type=button onClick="this.disabled=true; this.value='Playing';
         var element = getElementById('BotonInicioPuyao');
         element.parentNode.removeChild(element);
@@ -184,7 +183,6 @@
         if ((pScore.innerHTML == 3) && (cScore.innerHTML < 3)) {
             pScore.innerHTML = pcount + 1;
             document.getElementById("BotonSiguiente").disabled = true;
-            console.log("Player is obviously smarter, HE WINS!");
             document.getElementById('Leaderboard').innerHTML = "Player wins!";
             document.getElementById('BotonInicio').value = "Restarting game";
             audio.volume = 0.15;
@@ -200,7 +198,6 @@
         if ((cScore.innerHTML == 3) && (pScore.innerHTML < 3)) {
             cScore.innerHTML = ccount + 1;
             document.getElementById("BotonSiguiente").disabled = true;
-            console.log("PC Supremacy is real.... Computer wins");
             document.getElementById('BotonInicio').value = "Restarting game";
             document.getElementById('Leaderboard').innerHTML = "GG. Computer wins";
             audio.volume = 0.15;
